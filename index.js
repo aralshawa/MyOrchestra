@@ -7,7 +7,8 @@ app.get('/', function (req, res) {
 });
 
 app.post('/sms/', function (req, res) {
-  console.log(req);
+  res.set('Content-Type', 'text/xml');
+  res.send(new Buffer('<Response><Message>:^)</Message></Response>'));
 });
 
 app.listen(8080, 'localhost', function () {
