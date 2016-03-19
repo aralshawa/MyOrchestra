@@ -20,7 +20,7 @@
 @property (nonatomic, readonly) double minPitch;
 @property (nonatomic, readonly) double maxPitch;
 
-- (void)beginCalibration;
+- (void)beginCalibrationAndUpdates;
 
 - (void)yawCalibrationComplete:(struct MaxMinCalibrationTuple)result;
 - (void)pitchCalibrationComplete:(struct MaxMinCalibrationTuple)result;

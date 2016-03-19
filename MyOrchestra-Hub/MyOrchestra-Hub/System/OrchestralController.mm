@@ -8,6 +8,8 @@
 
 #import "OrchestralController.h"
 
+#import "hello-myo.h"
+
 #define fBoundValueToRange(value, min, max) fmin(fmax(value - min, 0), max)
 
 @implementation OrchestralController
@@ -24,9 +26,14 @@
 	return self;
 }
 
-- (void)beginCalibration
+- (void)beginCalibrationAndUpdates
 {
-	// Call myo logic async
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+		// Call myo logic async
+		DataCollector::beginCalibrationAndBeginLoop((__bridge void *)self);
+	});
+	
+	NSLog(@"What up!?");
 }
 
 - (void)yawCalibrationComplete:(MaxMinCalibrationTuple)result

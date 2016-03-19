@@ -15,6 +15,7 @@
 
 	self.orchController = [[OrchestralController alloc] init];
 	
+	[self.orchController beginCalibrationAndUpdates];
 }
 
 - (void)setRepresentedObject:(id)representedObject {

@@ -15,7 +15,23 @@
 		55402E111C9DB8EB00E1CDFB /* Orchestra.m in Sources */ = {isa = PBXBuildFile; fileRef = 55402E101C9DB8EB00E1CDFB /* Orchestra.m */; };
 		55402E141C9DB8FF00E1CDFB /* OrchestralSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 55402E131C9DB8FF00E1CDFB /* OrchestralSection.m */; };
 		55402E171C9DC53500E1CDFB /* OrchestralController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 55402E161C9DC53500E1CDFB /* OrchestralController.mm */; };
+		55402E1A1C9E07D500E1CDFB /* hello-myo.h in Sources */ = {isa = PBXBuildFile; fileRef = 55402E191C9E07D500E1CDFB /* hello-myo.h */; };
+		55402E1F1C9E12C300E1CDFB /* myo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55402E1E1C9E12C300E1CDFB /* myo.framework */; };
+		55402E211C9E132D00E1CDFB /* myo.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 55402E1E1C9E12C300E1CDFB /* myo.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		55402E201C9E131E00E1CDFB /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				55402E211C9E132D00E1CDFB /* myo.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		55402DF21C9DB7C200E1CDFB /* MyOrchestra-Hub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MyOrchestra-Hub.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -34,6 +50,8 @@
 		55402E151C9DC53500E1CDFB /* OrchestralController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrchestralController.h; path = System/OrchestralController.h; sourceTree = "<group>"; };
 		55402E161C9DC53500E1CDFB /* OrchestralController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = OrchestralController.mm; path = System/OrchestralController.mm; sourceTree = "<group>"; };
 		55402E181C9DF26300E1CDFB /* OrchestralController-C-Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OrchestralController-C-Interface.h"; path = "System/OrchestralController-C-Interface.h"; sourceTree = "<group>"; };
+		55402E191C9E07D500E1CDFB /* hello-myo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "hello-myo.h"; path = "System/hello-myo.h"; sourceTree = "<group>"; };
+		55402E1E1C9E12C300E1CDFB /* myo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = myo.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55402E1F1C9E12C300E1CDFB /* myo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				55402DF41C9DB7C200E1CDFB /* MyOrchestra-Hub */,
+				55402E1D1C9E080B00E1CDFB /* Frameworks */,
 				55402DF31C9DB7C200E1CDFB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -102,11 +122,20 @@
 		55402E0A1C9DB7EF00E1CDFB /* System */ = {
 			isa = PBXGroup;
 			children = (
+				55402E191C9E07D500E1CDFB /* hello-myo.h */,
 				55402E181C9DF26300E1CDFB /* OrchestralController-C-Interface.h */,
 				55402E151C9DC53500E1CDFB /* OrchestralController.h */,
 				55402E161C9DC53500E1CDFB /* OrchestralController.mm */,
 			);
 			name = System;
+			sourceTree = "<group>";
+		};
+		55402E1D1C9E080B00E1CDFB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				55402E1E1C9E12C300E1CDFB /* myo.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -119,6 +148,7 @@
 				55402DEE1C9DB7C200E1CDFB /* Sources */,
 				55402DEF1C9DB7C200E1CDFB /* Frameworks */,
 				55402DF01C9DB7C200E1CDFB /* Resources */,
+				55402E201C9E131E00E1CDFB /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -183,6 +213,7 @@
 				55402E171C9DC53500E1CDFB /* OrchestralController.mm in Sources */,
 				55402DFA1C9DB7C200E1CDFB /* main.m in Sources */,
 				55402E141C9DB8FF00E1CDFB /* OrchestralSection.m in Sources */,
+				55402E1A1C9E07D500E1CDFB /* hello-myo.h in Sources */,
 				55402DF71C9DB7C200E1CDFB /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,8 +316,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MyOrchestra-Hub",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "MyOrchestra-Hub/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "AAAplications.MyOrchestra-Hub";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -297,8 +333,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MyOrchestra-Hub",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "MyOrchestra-Hub/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "AAAplications.MyOrchestra-Hub";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -323,6 +364,7 @@
 				55402E081C9DB7C200E1CDFB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

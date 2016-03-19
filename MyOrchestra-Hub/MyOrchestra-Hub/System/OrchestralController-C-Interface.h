@@ -10,8 +10,8 @@
 #define OrchestralController_C_Interface_h
 
 struct MaxMinCalibrationTuple {
-	double min;
 	double max;
+	double min;
 };
 
 /*
