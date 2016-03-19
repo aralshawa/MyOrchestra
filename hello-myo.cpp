@@ -26,8 +26,8 @@ class DataCollector : public myo::DeviceListener {
 	
 public:
     DataCollector()
-    : onArmL(false), isUnlockedL(false), actionEnabledL(false), roll_w_l(0), pitch_w_l(0), yaw_w_l(0), past_pitch_l(0),
-	  onArmR(false), isUnlockedR(false), actionEnabledR(false), roll_w_r(0), pitch_w_r(0), yaw_w_r(0), past_pitch_r(0){
+    : onArmL(false), isUnlockedL(false), roll_w_l(0), pitch_w_l(0), yaw_w_l(0), past_pitch_l(0),
+	  onArmR(false), isUnlockedR(false), roll_w_r(0), pitch_w_r(0), yaw_w_r(0), past_pitch_r(0){
 
     }
 
@@ -95,22 +95,6 @@ public:
 		}
     }
 
-    void onPose(myo::Myo* myo, uint64_t timestamp, myo::Pose pose) {
-		if (identifyMyo(myo) == 1) {
-			if (pose != myo::Pose::unknown && pose == myo::Pose::fingersSpread) {
-				actionEnabledR = false;
-			} else if (pose != myo::Pose::unknown && myo::Pose::fist) {
-				actionEnabledR = true;
-			}
-		} else if (identifyMyo(myo) == 2) {
-			if (pose != myo::Pose::unknown && pose == myo::Pose::fingersSpread) {
-				actionEnabledL = false;
-			} else if (pose != myo::Pose::unknown && myo::Pose::fist) {
-				actionEnabledL = true;
-			}
-		}
-    }
-
     void onArmSync(myo::Myo* myo, uint64_t timestamp, myo::Arm arm, myo::XDirection xDirection, float rotation,
                    myo::WarmupState warmupState) {
 		if (identifyMyo(myo) == 1) {
@@ -166,7 +150,6 @@ public:
 	int roll_w_l, pitch_w_l, yaw_w_l;
 	int roll_w_r, pitch_w_r, yaw_w_r;
 
-	bool actionEnabledL, actionEnabledR;
 	int pitch_delta_l, pitch_delta_r;
 	int past_pitch_l, past_pitch_r;
 
@@ -182,22 +165,6 @@ int main(int argc, char** argv) {
     // First, we create a Hub with our application identifier. Be sure not to use the com.example namespace when
     // publishing your application. The Hub provides access to one or more Myos.
     myo::Hub hub("com.example.hello-myo");
-
-    //std::cout << "Attempting to find a Myo..." << std::endl;
-
-    //// Next, we attempt to find a Myo to use. If a Myo is already paired in Myo Connect, this will return that Myo
-    //// immediately.
-    //// waitForMyo() takes a timeout value in milliseconds. In this case we will try to find a Myo for 10 seconds, and
-    //// if that fails, the function will return a null pointer.
-    //myo::Myo* myo = hub.waitForMyo(10000);
-
-    //// If waitForMyo() returned a null pointer, we failed to find a Myo, so exit with an error message.
-    //if (!myo) {
-    //    throw std::runtime_error("Unable to find a Myo!");
-    //}
-
-    //// We've found a Myo.
-    //std::cout << "Connected to a Myo armband!" << std::endl << std::endl;
 
     // Next we construct an instance of our DeviceListener, so that we can register it with the Hub.
     DataCollector collector;
