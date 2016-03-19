@@ -10,6 +10,6 @@ app.post('/sms/', function (req, res) {
   console.log(req);
 });
 
-app.listen(80, function () {
-  console.log('MyOrchestra Server running on port 80.');
+app.listen(8080, 'localhost', function () {
+  console.log('MyOrchestra Server running on port 8080.');
 });
