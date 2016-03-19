@@ -1,4 +1,5 @@
 var express = require('express');
+var twilio = require('twilio');
 var bodyParser = require('body-parser');
 var app = express();
 
@@ -11,22 +12,21 @@ app.get('/', function (req, res) {
 
 app.get('/sms/', function (req, res) {
   res.set('Content-Type', 'text/xml');
-  res.send(new Buffer(smsReply(req.query)));
+  res.send(new Buffer(twilioReply(req.query)));
 });
 
 app.post('/sms/', function (req, res) {
   res.set('Content-Type', 'text/xml');
-  res.send(new Buffer(smsReply(req.body)));
+  res.send(new Buffer(twilioReply(req.body)));
 });
 
 app.listen(8080, 'localhost', function () {
   console.log('MyOrchestra Server running on port 8080.');
 });
 
-function smsReply(params) {
+function twilioReply(params) {
   console.log(params);
-  var reply = "<Response><Message>";
-  reply += "Hey there!";
-  reply += "</Message></Response>";
-  return reply;
+  var reply = new twilio.TwimlResponse();
+  reply.say("Your number is " + params.From);
+  return reply.toString();
 }
