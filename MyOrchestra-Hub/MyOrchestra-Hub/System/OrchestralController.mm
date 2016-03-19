@@ -1,0 +1,114 @@
+//
+//  OrchestralController.m
+//  MyOrchestra-Hub
+//
+//  Created by Abdul Al-Shawa on 2016-03-19.
+//  Copyright © 2016 Abdul Al-Shawa. All rights reserved.
+//
+
+#import "OrchestralController.h"
+
+#define fBoundValueToRange(value, min, max) fmin(fmax(value - min, 0), max)
+
+@implementation OrchestralController
+
+@synthesize minYaw = _minYaw, maxYaw = _maxYaw, minPitch = _minPitch, maxPitch = _maxPitch;
+
+- (instancetype)init
+{
+	if (self = [super init])
+	{
+		_orchestra = [[Orchestra alloc] init];
+	}
+	
+	return self;
+}
+
+- (void)beginCalibration
+{
+	// Call myo logic async
+}
+
+- (void)yawCalibrationComplete:(MaxMinCalibrationTuple)result
+{
+	_minYaw = result.min;
+	_maxYaw = result.max;
+}
+
+- (void)pitchCalibrationComplete:(MaxMinCalibrationTuple)result
+{
+	_minPitch = result.min;
+	_maxPitch = result.max;
+}
+
+- (void)onUpdateSectionSelectYaw:(double)degrees
+{
+	double normalizedYaw = [self normalizedYaw:degrees];
+	
+	NSUInteger sectionIdx = [self sectionForNormalizedYaw:normalizedYaw];
+	
+	if (sectionIdx != NSUIntegerMax)
+	{
+		[self.orchestra setSelectedSectionIdx:sectionIdx];
+	}
+	
+	NSLog(@"%@", self.orchestra);
+}
+
+- (void)onUpdateVolumeSelectPitch:(double)degrees
+{
+	double normalizedPitch = [self normalizedPitch:degrees];
+	
+	[self.orchestra updateCurrentSectionWithNormalizedVolume:normalizedPitch];
+	
+	NSLog(@"%@", self.orchestra);
+}
+
+#pragma mark - Utilities
+- (NSUInteger)sectionForNormalizedYaw:(double)yaw
+{
+	double yawThreshold = 1 / self.orchestra.numberOfSections;
+	
+	for (int sec = 0; sec < self.orchestra.numberOfSections; sec ++)
+	{
+		if (yaw > (sec * yawThreshold) && yaw < ((sec + 1) * yawThreshold)) {
+			return sec;
+		}
+	}
+	
+	return NSUIntegerMax;
+}
+
+- (double)normalizedYaw:(double)yaw
+{
+	return fBoundValueToRange(yaw, self.minYaw, self.maxYaw) / self.maxYaw;
+}
+
+- (double)normalizedPitch:(double)pitch
+{
+	return fBoundValueToRange(pitch, self.minPitch, self.maxPitch) / self.maxPitch;
+}
+
+#pragma mark - C Trampoline Functions
+
+void yawCalibrationComplete(void *context, struct MaxMinCalibrationTuple result)
+{
+	return [(__bridge id)context yawCalibrationComplete:result];
+}
+
+void pitchCalibrationComplete(void *context, struct MaxMinCalibrationTuple result)
+{
+	return [(__bridge id)context pitchCalibrationComplete:result];
+}
+
+void onUpdateSectionSelectYaw(void *context, double degrees)
+{
+	return [(__bridge id)context onUpdateSectionSelectYaw:degrees];
+}
+
+void onUpdateVolumeSelectPitch(void *context, double degrees)
+{
+	return [(__bridge id)context onUpdateVolumeSelectPitch:degrees];
+}
+
+@end
