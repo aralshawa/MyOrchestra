@@ -31,9 +31,9 @@ public:
 		past_pitch = pitch_w;
     }
 
-	//void onPair(myo::Myo* myo, uint64_t timestamp, myo::FirmwareVersion firmwareVersion) {
-	//	knownMyos.push_back(myo);
-	//}
+	void onPair(myo::Myo* myo, uint64_t timestamp, myo::FirmwareVersion firmwareVersion) {
+		knownMyos.push_back(myo);
+	}
 
     // onUnpair() is called whenever the Myo is disconnected from Myo Connect by the user.
     void onUnpair(myo::Myo* myo, uint64_t timestamp) {
@@ -187,18 +187,18 @@ int main(int argc, char** argv) {
 		if (collector.yaw_w > 300 || collector.yaw_w < 80) {
 			std::cout << "Section: " << "String     ";
 			if (collector.pitch_w > 220 || collector.pitch_w < 150) {
-				PlaySound("C:\\Users\\Developer\\string.wav", NULL, SND_FILENAME);
+				PlaySound("string.wav", NULL, SND_FILENAME);
 			}
 		}
 		else if (collector.yaw_w > 150) {
 			std::cout << "Section: " << "Percussion ";
 			if (collector.pitch_w > 220 || collector.pitch_w < 150) {
-				PlaySound("C:\\Users\\Developer\\percussion.wav", NULL, SND_FILENAME);
+				PlaySound("percussion.wav", NULL, SND_FILENAME);
 			}
 		} else {
 			std::cout << "Section: " << "Woodwind   ";
 			if (collector.pitch_w > 220 || collector.pitch_w < 150) {
-				PlaySound("C:\\Users\\Developer\\woodwind.wav", NULL, SND_FILENAME);
+				PlaySound("woodwind.wav", NULL, SND_FILENAME);
 			}
 		}
 		std::cout << "Pitch: " << collector.pitch_w;
