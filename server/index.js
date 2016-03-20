@@ -20,6 +20,8 @@ app.use(bodyParser.json());
 
 app.use('/public/', express.static('recordings'));
 
+app.use('/.well-known/', express.static('.well-known'))
+
 app.get('/', function (req, res) {
   res.render('home');
 });
