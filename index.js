@@ -46,7 +46,7 @@ app.post('/voice/', function (req, res) {
 app.post('/voice/choose', function (req, res) {
   var rep = new twilio.TwimlResponse();
   if ( Number(req.body.Digits) === 1 ) {
-    rep.say('This voice session will start recording after the beep.')
+    rep.say('This voice session will start recording after the beep. Press any key to stop the recording.')
       .record({
         action: '/voice/record',
         maxLength: 600
@@ -60,7 +60,7 @@ app.post('/voice/choose', function (req, res) {
   }
   res.set('Content-Type', 'text/xml');
   res.send(rep.toString());
-  console.log('RESP ' + req.body.From);
+  console.log('RESP  ' + req.body.From);
 })
 
 app.post('/voice/record', function (req, res) {
@@ -69,9 +69,11 @@ app.post('/voice/record', function (req, res) {
     .hangup();
   res.set('Content-Type', 'text/xml');
   res.send(rep.toString());
-  console.log('RECR ' + req.body.From);
+  console.log('RECR  ' + req.body.From);
+  console.log('URL   ' + req.body.RecordingUrl);
   var file = fs.createWriteStream("recordings/voice.wav");
   http.get(req.body.RecordingUrl, function(res) {
     res.pipe(file);
+    console.log('FILE  ' + 'recordings/voice.wav');
   });
 })
