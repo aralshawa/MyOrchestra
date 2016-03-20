@@ -21,7 +21,7 @@ app.listen(8080, 'localhost', function () {
 });
 
 function smsReply(params) {
-  console.log(params);
+  console.log('SMS   ' + params.From);
   var reply = new twilio.TwimlResponse();
   reply.message("MyOrchestra is a new orchestral experience using intuitive gesture controls to conduct your own symphony. Call this number to record your voice for a truly unique piece.");
   return new Buffer(reply.toString());
@@ -32,7 +32,7 @@ app.post('/voice/', function (req, res) {
   rep.say('Welcome to MyOrchestra Voice. ')
     .gather({
       action: '/voice/choose',
-      timeout: 2
+      timeout: 6
     }, function() {
       this.say('To record your voice for the next performance, please press 1.');
     })
@@ -40,6 +40,7 @@ app.post('/voice/', function (req, res) {
     .hangup();
   res.set('Content-Type', 'text/xml');
   res.send(rep.toString());
+  console.log('CALL  ' + req.body.From);
 })
 
 app.post('/voice/choose', function (req, res) {
@@ -59,6 +60,7 @@ app.post('/voice/choose', function (req, res) {
   }
   res.set('Content-Type', 'text/xml');
   res.send(rep.toString());
+  console.log('RESP ' + req.body.From);
 })
 
 app.post('/voice/record', function (req, res) {
@@ -67,6 +69,7 @@ app.post('/voice/record', function (req, res) {
     .hangup();
   res.set('Content-Type', 'text/xml');
   res.send(rep.toString());
+  console.log('RECR ' + req.body.From);
   var file = fs.createWriteStream("recordings/voice.wav");
   http.get(req.body.RecordingUrl, function(res) {
     res.pipe(file);
