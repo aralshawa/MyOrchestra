@@ -36,6 +36,21 @@
 	return _sections.count;
 }
 
+- (void)beginLooping
+{
+	for (int secIdx = 0; secIdx < self.sections.count; secIdx ++) {
+		OrchestralSection *section = self.sections[secIdx];
+		
+		// Set up pan ratio
+		// Note: -1 = perfect L channel, 1 = perfect R channel
+		double leftRightPanRatio = -1.f + (2 * (double)secIdx/(self.sections.count - 1)) + (secIdx == 0 ? 0.1 : ((secIdx == self.sections.count - 1) ? -0.1: 0));
+		[section setAudioPanRatio:leftRightPanRatio];
+		
+		// Set enabled
+		[section setEnabled:YES];
+	}
+}
+
 - (BOOL)audioPlaying
 {
 	for (OrchestralSection *section in self.sections) {

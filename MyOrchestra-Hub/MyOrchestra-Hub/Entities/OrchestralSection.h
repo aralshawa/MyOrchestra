@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AVFoundation/AVFoundation.h>
+#import <AppKit/NSSound.h>
 
 typedef NS_ENUM(NSUInteger, OrchestralSectionType) {
 	OrchestralSectionTypeStrings,
@@ -19,10 +21,11 @@ typedef NS_ENUM(NSUInteger, OrchestralSectionType) {
 - (instancetype)initSectionWithType:(OrchestralSectionType)type;
 
 @property (nonatomic, readonly) OrchestralSectionType type;
-//@property (nonatomic, readonly) NSUInteger sequenceNumber;
 @property (nonatomic) BOOL enabled;
 @property (nonatomic) double volume;
 
-@property (nonatomic) double speed;
+@property (nonatomic, strong) AVAudioPlayer *audioPlayer;
+
+- (void)setAudioPanRatio:(double)pan;
 
 @end

@@ -12,7 +12,10 @@
 
 #define fBoundValueToRange(value, min, max) fmin(fmax(value - min, 0), max)
 
-@implementation OrchestralController
+@implementation OrchestralController {
+	BOOL yawCalComplete;
+	BOOL pitchCalComplete;
+}
 
 @synthesize minYaw = _minYaw, maxYaw = _maxYaw, minPitch = _minPitch, maxPitch = _maxPitch;
 
@@ -40,12 +43,24 @@
 {
 	_minYaw = result.min;
 	_maxYaw = result.max;
+	yawCalComplete = YES;
+	
+	[self initAudioIfCalComplete];
 }
 
 - (void)pitchCalibrationComplete:(MaxMinCalibrationTuple)result
 {
 	_minPitch = result.min;
 	_maxPitch = result.max;
+	pitchCalComplete = YES;
+	
+	[self initAudioIfCalComplete];
+}
+
+- (void)initAudioIfCalComplete;
+{
+	if (yawCalComplete && pitchCalComplete)
+		[self.orchestra beginLooping];
 }
 
 - (void)onUpdateSectionSelectYaw:(double)degrees

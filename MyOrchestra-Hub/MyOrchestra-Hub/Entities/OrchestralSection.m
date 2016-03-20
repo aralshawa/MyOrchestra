@@ -17,8 +17,25 @@
 	if (self = [super init])
 	{
 		_type = type;
-		self.volume = 0;
-		self.speed = 0.5;
+		_volume = 0;
+		
+		NSURL *audioURL;
+		switch (self.type) {
+			case OrchestralSectionTypeStrings:
+				audioURL = [[NSBundle mainBundle] URLForResource:@"anewbeginning" withExtension:@"mp3"];
+				break;
+			case OrchestralSectionTypePrecusion:
+				audioURL = [[NSBundle mainBundle] URLForResource:@"happiness" withExtension:@"mp3"];
+				break;
+			case OrchestralSectionTypeWoodwind:
+				audioURL = [[NSBundle mainBundle] URLForResource:@"happyrock" withExtension:@"mp3"];
+				break;
+		}
+		
+		// TODO: Assume no import errors
+		self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:audioURL error:NULL];
+		self.audioPlayer.numberOfLoops = -1;
+		[self.audioPlayer prepareToPlay];
 	}
 	
 	return self;
@@ -27,19 +44,23 @@
 - (void)setEnabled:(BOOL)enabled
 {
 	_enabled = enabled;
-	// Update audo
+	
+	// Update audio
+	[self.audioPlayer play];
+}
+
+/// Between -1 and 1
+- (void)setAudioPanRatio:(double)pan
+{
+	self.audioPlayer.pan = pan;
 }
 
 - (void)setVolume:(double)volume
 {
 	_volume = volume < 0 ? 0 : MIN(volume, 1);
+	
 	// Update audio
-}
-
-- (void)setSpeed:(double)speed
-{
-	_speed = speed < 0 ? 0 : MIN(speed, 1);
-	// Update audio
+	[self.audioPlayer setVolume:volume];
 }
 
 @end

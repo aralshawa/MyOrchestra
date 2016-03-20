@@ -18,6 +18,9 @@
 		55402E1A1C9E07D500E1CDFB /* hello-myo.h in Sources */ = {isa = PBXBuildFile; fileRef = 55402E191C9E07D500E1CDFB /* hello-myo.h */; };
 		55402E1F1C9E12C300E1CDFB /* myo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55402E1E1C9E12C300E1CDFB /* myo.framework */; };
 		55402E211C9E132D00E1CDFB /* myo.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 55402E1E1C9E12C300E1CDFB /* myo.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		55402E241C9E2A0E00E1CDFB /* happyrock.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 55402E231C9E2A0E00E1CDFB /* happyrock.mp3 */; };
+		55402E261C9E2A1E00E1CDFB /* happiness.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 55402E251C9E2A1E00E1CDFB /* happiness.mp3 */; };
+		55402E281C9E2A2400E1CDFB /* anewbeginning.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 55402E271C9E2A2400E1CDFB /* anewbeginning.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -52,6 +55,9 @@
 		55402E181C9DF26300E1CDFB /* OrchestralController-C-Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OrchestralController-C-Interface.h"; path = "System/OrchestralController-C-Interface.h"; sourceTree = "<group>"; };
 		55402E191C9E07D500E1CDFB /* hello-myo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "hello-myo.h"; path = "System/hello-myo.h"; sourceTree = "<group>"; };
 		55402E1E1C9E12C300E1CDFB /* myo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = myo.framework; sourceTree = "<group>"; };
+		55402E231C9E2A0E00E1CDFB /* happyrock.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = happyrock.mp3; sourceTree = "<group>"; };
+		55402E251C9E2A1E00E1CDFB /* happiness.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = happiness.mp3; sourceTree = "<group>"; };
+		55402E271C9E2A2400E1CDFB /* anewbeginning.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = anewbeginning.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				55402DF41C9DB7C200E1CDFB /* MyOrchestra-Hub */,
+				55402E221C9E28F800E1CDFB /* Audio Resources */,
 				55402E1D1C9E080B00E1CDFB /* Frameworks */,
 				55402DF31C9DB7C200E1CDFB /* Products */,
 			);
@@ -138,6 +145,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		55402E221C9E28F800E1CDFB /* Audio Resources */ = {
+			isa = PBXGroup;
+			children = (
+				55402E271C9E2A2400E1CDFB /* anewbeginning.mp3 */,
+				55402E251C9E2A1E00E1CDFB /* happiness.mp3 */,
+				55402E231C9E2A0E00E1CDFB /* happyrock.mp3 */,
+			);
+			name = "Audio Resources";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -198,6 +215,9 @@
 			files = (
 				55402DFF1C9DB7C200E1CDFB /* Assets.xcassets in Resources */,
 				55402E021C9DB7C200E1CDFB /* Main.storyboard in Resources */,
+				55402E281C9E2A2400E1CDFB /* anewbeginning.mp3 in Resources */,
+				55402E261C9E2A1E00E1CDFB /* happiness.mp3 in Resources */,
+				55402E241C9E2A0E00E1CDFB /* happyrock.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
