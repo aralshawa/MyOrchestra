@@ -22,13 +22,13 @@
 		NSURL *audioURL;
 		switch (self.type) {
 			case OrchestralSectionTypeStrings:
-				audioURL = [[NSBundle mainBundle] URLForResource:@"anewbeginning" withExtension:@"mp3"];
+				audioURL = [[NSBundle mainBundle] URLForResource:@"low-freq" withExtension:@"wav"];
 				break;
 			case OrchestralSectionTypePrecusion:
-				audioURL = [[NSBundle mainBundle] URLForResource:@"happiness" withExtension:@"mp3"];
+				audioURL = [[NSBundle mainBundle] URLForResource:@"mid-freq" withExtension:@"wav"];
 				break;
 			case OrchestralSectionTypeWoodwind:
-				audioURL = [[NSBundle mainBundle] URLForResource:@"happyrock" withExtension:@"mp3"];
+				audioURL = [[NSBundle mainBundle] URLForResource:@"hi-freq" withExtension:@"wav"];
 				break;
 		}
 		

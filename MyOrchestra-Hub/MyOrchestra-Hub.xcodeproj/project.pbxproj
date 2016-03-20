@@ -18,9 +18,9 @@
 		55402E1A1C9E07D500E1CDFB /* hello-myo.h in Sources */ = {isa = PBXBuildFile; fileRef = 55402E191C9E07D500E1CDFB /* hello-myo.h */; };
 		55402E1F1C9E12C300E1CDFB /* myo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55402E1E1C9E12C300E1CDFB /* myo.framework */; };
 		55402E211C9E132D00E1CDFB /* myo.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 55402E1E1C9E12C300E1CDFB /* myo.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		55402E241C9E2A0E00E1CDFB /* happyrock.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 55402E231C9E2A0E00E1CDFB /* happyrock.mp3 */; };
-		55402E261C9E2A1E00E1CDFB /* happiness.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 55402E251C9E2A1E00E1CDFB /* happiness.mp3 */; };
-		55402E281C9E2A2400E1CDFB /* anewbeginning.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 55402E271C9E2A2400E1CDFB /* anewbeginning.mp3 */; };
+		55402E2C1C9E42CF00E1CDFB /* hi-freq.wav in Resources */ = {isa = PBXBuildFile; fileRef = 55402E291C9E42CF00E1CDFB /* hi-freq.wav */; };
+		55402E2D1C9E42CF00E1CDFB /* low-freq.wav in Resources */ = {isa = PBXBuildFile; fileRef = 55402E2A1C9E42CF00E1CDFB /* low-freq.wav */; };
+		55402E2E1C9E42CF00E1CDFB /* med-freq.wav in Resources */ = {isa = PBXBuildFile; fileRef = 55402E2B1C9E42CF00E1CDFB /* med-freq.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -55,9 +55,9 @@
 		55402E181C9DF26300E1CDFB /* OrchestralController-C-Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OrchestralController-C-Interface.h"; path = "System/OrchestralController-C-Interface.h"; sourceTree = "<group>"; };
 		55402E191C9E07D500E1CDFB /* hello-myo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "hello-myo.h"; path = "System/hello-myo.h"; sourceTree = "<group>"; };
 		55402E1E1C9E12C300E1CDFB /* myo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = myo.framework; sourceTree = "<group>"; };
-		55402E231C9E2A0E00E1CDFB /* happyrock.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = happyrock.mp3; sourceTree = "<group>"; };
-		55402E251C9E2A1E00E1CDFB /* happiness.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = happiness.mp3; sourceTree = "<group>"; };
-		55402E271C9E2A2400E1CDFB /* anewbeginning.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = anewbeginning.mp3; sourceTree = "<group>"; };
+		55402E291C9E42CF00E1CDFB /* hi-freq.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "hi-freq.wav"; sourceTree = "<group>"; };
+		55402E2A1C9E42CF00E1CDFB /* low-freq.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "low-freq.wav"; sourceTree = "<group>"; };
+		55402E2B1C9E42CF00E1CDFB /* med-freq.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "med-freq.wav"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,9 +148,9 @@
 		55402E221C9E28F800E1CDFB /* Audio Resources */ = {
 			isa = PBXGroup;
 			children = (
-				55402E271C9E2A2400E1CDFB /* anewbeginning.mp3 */,
-				55402E251C9E2A1E00E1CDFB /* happiness.mp3 */,
-				55402E231C9E2A0E00E1CDFB /* happyrock.mp3 */,
+				55402E291C9E42CF00E1CDFB /* hi-freq.wav */,
+				55402E2A1C9E42CF00E1CDFB /* low-freq.wav */,
+				55402E2B1C9E42CF00E1CDFB /* med-freq.wav */,
 			);
 			name = "Audio Resources";
 			sourceTree = "<group>";
@@ -214,10 +214,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				55402DFF1C9DB7C200E1CDFB /* Assets.xcassets in Resources */,
+				55402E2E1C9E42CF00E1CDFB /* med-freq.wav in Resources */,
 				55402E021C9DB7C200E1CDFB /* Main.storyboard in Resources */,
-				55402E281C9E2A2400E1CDFB /* anewbeginning.mp3 in Resources */,
-				55402E261C9E2A1E00E1CDFB /* happiness.mp3 in Resources */,
-				55402E241C9E2A0E00E1CDFB /* happyrock.mp3 in Resources */,
+				55402E2D1C9E42CF00E1CDFB /* low-freq.wav in Resources */,
+				55402E2C1C9E42CF00E1CDFB /* hi-freq.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
