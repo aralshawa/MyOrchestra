@@ -4,11 +4,16 @@ var bodyParser = require('body-parser');
 var fs = require('fs');
 var https = require('https');
 var url = require('url');
+var exphbs  = require('express-handlebars');
+
 var app = express();
 var voiceConfig = {
   voice: 'female', 
   language: 'en'
 };
+
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -16,7 +21,7 @@ app.use(bodyParser.json());
 app.use('/public/', express.static('recordings'));
 
 app.get('/', function (req, res) {
-  res.send('MyOrchestra');
+  res.render('home');
 });
 
 app.post('/sms/', function (req, res) {
