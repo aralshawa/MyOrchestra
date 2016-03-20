@@ -2,7 +2,7 @@ var express = require('express');
 var twilio = require('twilio');
 var bodyParser = require('body-parser');
 var fs = require('fs');
-var http = require('http');
+var https = require('https');
 var app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -73,7 +73,7 @@ app.post('/voice/record', function (req, res) {
   console.log('RECR  ' + req.body.From);
   console.log('URL   ' + req.body.RecordingUrl);
   var file = fs.createWriteStream("recordings/voice.wav");
-  http.get(req.body.RecordingUrl, function(res) {
+  https.get(req.body.RecordingUrl, function(res) {
     res.pipe(file);
     console.log('FILE  ' + 'recordings/voice.wav');
   });
