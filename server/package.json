@@ -1,0 +1,25 @@
+{
+  "name": "myorchestra",
+  "version": "0.0.0",
+  "description": "Conduct an orchestra using Myo armband gestures.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aralshawa/MyOrchestra.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aralshawa/MyOrchestra/issues"
+  },
+  "homepage": "https://github.com/aralshawa/MyOrchestra#readme",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "express-handlebars": "^3.0.0",
+    "twilio": "^2.9.0"
+  }
+}
