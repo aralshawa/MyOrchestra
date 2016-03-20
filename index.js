@@ -25,7 +25,7 @@ app.post('/sms/', function (req, res) {
     'Call +16474928264 to record your voice for a truly unique piece.');
   res.set('Content-Type', 'text/xml');
   res.send(reply.toString());
-  console.log('SMS   ' + params.From);
+  console.log('SMS   ' + req.body.From);
 });
 
 app.post('/voice/', function (req, res) {
