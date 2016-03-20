@@ -192,6 +192,7 @@ public:
 			hub.addListener(&collector);
 			
 			// Determine range
+			printf("Begin Calibration\n");
 			hub.run(1000 / 20);
 			collector.lim_pitch_r[0] = collector.pitch_w_r; collector.lim_pitch_r[1] = collector.pitch_w_r;
 			collector.lim_yaw_r[0] = collector.yaw_w_r;   collector.lim_yaw_r[1] = collector.yaw_w_r;
@@ -218,11 +219,20 @@ public:
 			
 			collector.calibrate();
 			
+			printf("Calibration Complete\n");
+			
 			// Finally we enter our main loop.
 			while (1) {
 				// In each iteration of our main loop, we run the Myo event loop for a set number of milliseconds.
 				// In this case, we wish to update our display 20 times a second, so we run for 1000/20 milliseconds.
 				hub.run(1000 / 20);
+				printf("%d, %f", collector.yaw_w_r, collector.lim_yaw_r[2]);
+				printf("          ");
+				printf("\r");
+				if (collector.pitch_w_r > collector.lim_pitch_r[2]) {
+					onUpdateSectionSelectYaw(collector.systemContext, collector.yaw_w_r);
+					onUpdateVolumeSelectPitch(collector.systemContext, collector.pitch_w_l);
+				}
 				
 			}
 			

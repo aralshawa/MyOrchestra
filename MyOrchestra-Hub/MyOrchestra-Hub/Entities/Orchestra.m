@@ -17,12 +17,18 @@
 {
 	if (self = [super init])
 	{
+		_sections = [[NSMutableArray alloc] initWithCapacity:3];
 		[_sections addObject:[[OrchestralSection alloc] initSectionWithType:OrchestralSectionTypeStrings]];
 		[_sections addObject:[[OrchestralSection alloc] initSectionWithType:OrchestralSectionTypePrecusion]];
 		[_sections addObject:[[OrchestralSection alloc] initSectionWithType:OrchestralSectionTypeWoodwind]];
 	}
 	
 	return self;
+}
+
+- (NSArray *)sections
+{
+	return _sections;
 }
 
 - (NSUInteger)numberOfSections

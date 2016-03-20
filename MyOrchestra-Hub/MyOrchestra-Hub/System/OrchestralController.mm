@@ -74,7 +74,7 @@
 #pragma mark - Utilities
 - (NSUInteger)sectionForNormalizedYaw:(double)yaw
 {
-	double yawThreshold = 1 / self.orchestra.numberOfSections;
+	double yawThreshold = (double)1 / self.orchestra.numberOfSections;
 	
 	for (int sec = 0; sec < self.orchestra.numberOfSections; sec ++)
 	{
