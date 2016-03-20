@@ -33,7 +33,8 @@ app.post('/voice/', function (req, res) {
   rep.say('Welcome to MyOrchestra Voice. ')
     .gather({
       action: '/voice/choose',
-      timeout: 6
+      numDigits: 1,
+      timeout: 5
     }, function() {
       this.say('To record your voice for the next performance, please press 1.');
     })
