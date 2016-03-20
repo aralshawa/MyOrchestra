@@ -12,6 +12,7 @@
 	NSBezierPath *leftSectionPath;
 	NSBezierPath *middleSectionPath;
 	NSBezierPath *rightSectionPath;
+	NSUInteger _sectionIdx;
 }
 
 - (void)drawRect:(NSRect)dirtyRect {
@@ -49,20 +50,25 @@
 	[leftSectionPath fill];
 	[middleSectionPath fill];
 	[rightSectionPath fill];
+	
+	[[NSColor blueColor] setFill];
+	
+	if (_sectionIdx == 0) {
+		[leftSectionPath fill];
+	} else if (_sectionIdx == 1) {
+		[middleSectionPath fill];
+	} else if (_sectionIdx == 2) {
+		[rightSectionPath fill];
+	}
 }
 
 - (void)setSelected:(NSUInteger)secIdx
 {
-	[[NSColor blueColor] setFill];
-	if (secIdx == 0) {
-		[leftSectionPath fill];
-	} else if (secIdx == 1) {
-		[middleSectionPath fill];
-	} else {
-		[rightSectionPath fill];
-	}
+	_sectionIdx = secIdx;
 	
-	[self setNeedsDisplay:YES];
+	dispatch_async(dispatch_get_main_queue(), ^{
+		[self setNeedsDisplay:YES];
+	});
 }
 
 @end

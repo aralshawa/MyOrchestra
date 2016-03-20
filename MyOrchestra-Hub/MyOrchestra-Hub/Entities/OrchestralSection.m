@@ -19,6 +19,20 @@
 		_type = type;
 		_volume = 0;
 		
+		// Default config
+		[self updateAudioResourceWithData:nil];
+	}
+	
+	return self;
+}
+
+- (void)updateAudioResourceWithData:(NSData *)data
+{
+	if (data != nil) {
+		NSError *error;
+		self.audioPlayer = [[AVAudioPlayer alloc] initWithData:data error:&error];
+		
+	} else {
 		NSURL *audioURL;
 		switch (self.type) {
 			case OrchestralSectionTypeStrings:
@@ -34,11 +48,11 @@
 		
 		// TODO: Assume no import errors
 		self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:audioURL error:NULL];
-		self.audioPlayer.numberOfLoops = -1;
-		[self.audioPlayer prepareToPlay];
 	}
 	
-	return self;
+	[self setVolume:0.5];
+	self.audioPlayer.numberOfLoops = -1;
+	[self.audioPlayer prepareToPlay];
 }
 
 - (void)setEnabled:(BOOL)enabled
@@ -46,7 +60,11 @@
 	_enabled = enabled;
 	
 	// Update audio
-	[self.audioPlayer play];
+	if (enabled) {
+		[self.audioPlayer play];
+	} else {
+		[self.audioPlayer stop];
+	}
 }
 
 /// Between -1 and 1

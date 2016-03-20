@@ -729,6 +729,7 @@
                     </view>
                     <connections>
                         <outlet property="orchestraSectionViews" destination="Ke0-bZ-afy" id="1Ga-3o-ehr"/>
+                        <outlet property="playButton" destination="RaF-Io-qkA" id="5WP-Or-4bo"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

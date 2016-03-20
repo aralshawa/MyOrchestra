@@ -18,6 +18,7 @@
 @property (nonatomic) NSUInteger selectedSectionIdx;
 
 - (void)beginLooping;
+- (void)pauseLooping;
 - (void)updateCurrentSectionWithNormalizedVolume:(double)vol;
 
 @end

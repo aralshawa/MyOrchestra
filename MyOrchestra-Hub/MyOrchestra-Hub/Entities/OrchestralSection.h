@@ -19,6 +19,7 @@ typedef NS_ENUM(NSUInteger, OrchestralSectionType) {
 @interface OrchestralSection : NSObject
 
 - (instancetype)initSectionWithType:(OrchestralSectionType)type;
+- (void)updateAudioResourceWithData:(NSData *)data;
 
 @property (nonatomic, readonly) OrchestralSectionType type;
 @property (nonatomic) BOOL enabled;

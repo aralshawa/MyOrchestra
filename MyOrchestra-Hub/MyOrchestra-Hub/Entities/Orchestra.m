@@ -51,6 +51,13 @@
 	}
 }
 
+- (void)pauseLooping
+{
+	for (OrchestralSection *section in self.sections) {
+		[section setEnabled:NO];
+	}
+}
+
 - (BOOL)audioPlaying
 {
 	for (OrchestralSection *section in self.sections) {

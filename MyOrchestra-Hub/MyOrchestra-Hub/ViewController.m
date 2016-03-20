@@ -8,11 +8,6 @@
 
 #import "ViewController.h"
 
-typedef NS_ENUM(NSUInteger, SystemMode) {
-	SystemModeRegular,
-	SystemModeSocial
-};
-
 @implementation ViewController  {
 	BOOL _playState;
 	SystemMode _mode;
@@ -32,6 +27,8 @@ typedef NS_ENUM(NSUInteger, SystemMode) {
 	// Initialization
 	[self resetState];
 	self.orchController = [[OrchestralController alloc] initWithDelegate:self];
+	
+//	[self.orchController resumeUpdates];
 }
 
 - (void)setRepresentedObject:(id)representedObject {
@@ -59,7 +56,14 @@ typedef NS_ENUM(NSUInteger, SystemMode) {
 	// Stop playing...
 	NSLog(@"Mode = %zd", _mode);
 	
-	// Change mode...
+	if (_playState) {
+		_playState = !_playState;
+		[self.orchController pauseUpdates];
+		self.playButton.title = @"Play!";
+	}
+	
+	// Changing the mode
+	[self.orchController onUpdateMode:_mode];
 }
 
 - (void)updateSelectedSectionWithIndex:(NSUInteger)secIdx

@@ -15,6 +15,7 @@
 @implementation OrchestralController {
 	BOOL yawCalComplete;
 	BOOL pitchCalComplete;
+	BOOL calibrationDispatched;
 	id<OrchestralControllerDelegate> _delegate;
 }
 
@@ -31,32 +32,32 @@
 	return self;
 }
 
-- (void)beginCalibrationAndUpdates
-{
-	
-}
-
 - (void)resumeUpdates
 {
 	DataCollector::updateContextOfChanges = true;
 	
-	if (!yawCalComplete || !pitchCalComplete) {
+	if ((!yawCalComplete || !pitchCalComplete) && !calibrationDispatched) {
+		calibrationDispatched = YES;
+		
 		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 			// Call myo logic async
 			DataCollector::beginCalibrationAndBeginLoop((__bridge void *)self);
 		});
 	}
+	
+	[self.orchestra beginLooping];
 }
 
 - (void)pauseUpdates
 {
 	DataCollector::updateContextOfChanges = false;
+	[self.orchestra pauseLooping];
 }
 
 - (void)yawCalibrationComplete:(MaxMinCalibrationTuple)result
 {
-	_minYaw = result.min;
-	_maxYaw = result.max;
+	_minYaw = result.min + 360;
+	_maxYaw = result.max + 360;
 	yawCalComplete = YES;
 	
 	[self initAudioIfCalComplete];
@@ -64,8 +65,8 @@
 
 - (void)pitchCalibrationComplete:(MaxMinCalibrationTuple)result
 {
-	_minPitch = result.min;
-	_maxPitch = result.max;
+	_minPitch = result.min + 360;
+	_maxPitch = result.max + 360;
 	pitchCalComplete = YES;
 	
 	[self initAudioIfCalComplete];
@@ -79,7 +80,7 @@
 
 - (void)onUpdateSectionSelectYaw:(double)degrees
 {
-	double normalizedYaw = [self normalizedYaw:degrees];
+	double normalizedYaw = [self normalizedYaw:degrees + 360];
 	
 	NSUInteger sectionIdx = [self sectionForNormalizedYaw:normalizedYaw];
 	
@@ -95,11 +96,61 @@
 
 - (void)onUpdateVolumeSelectPitch:(double)degrees
 {
-	double normalizedPitch = [self normalizedPitch:degrees];
+	double normalizedPitch = [self normalizedPitch:degrees + 360];
 	
 	[self.orchestra updateCurrentSectionWithNormalizedVolume:normalizedPitch];
 	
 	NSLog(@"%@", self.orchestra);
+}
+
+- (void)onUpdateMode:(SystemMode)mode
+{
+	switch (mode) {
+		case SystemModeRegular:
+		{
+			for (OrchestralSection *section in self.orchestra.sections) {
+				[section updateAudioResourceWithData:nil];
+			}
+			
+			break;
+		}
+		case SystemModeSocial:
+		{
+			// pariwak.com/voice/recordings
+			
+			NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://pariwak.com/voice/recordings"]];
+			NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+			[NSURLConnection sendAsynchronousRequest:urlRequest queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+			 {
+				 if (error)
+				 {
+					 NSLog(@"Error with recording request: %@", [error localizedDescription]);
+				 }
+				 else
+				 {
+					 NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding]);
+					 
+					 NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+					 
+					 for (int secIdx = 0; secIdx < self.orchestra.sections.count; secIdx ++) {
+						 OrchestralSection *section = self.orchestra.sections[secIdx];
+						 
+						 
+						 NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[@"https://pariwak.com/public/" stringByAppendingString:jsonArray[jsonArray.count - secIdx - 1]]]];
+						 NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+						 
+						 [NSURLConnection sendAsynchronousRequest:urlRequest queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+						  {
+							  [section updateAudioResourceWithData:data];
+
+						  }];
+					 }
+				 }
+			 }];
+			
+			break;
+		}
+	}
 }
 
 #pragma mark - Utilities
@@ -110,7 +161,7 @@
 	for (int sec = 0; sec < self.orchestra.numberOfSections; sec ++)
 	{
 		if (yaw > (sec * yawThreshold) && yaw < ((sec + 1) * yawThreshold)) {
-			return sec;
+			return 2 - sec;
 		}
 	}
 	
@@ -119,12 +170,12 @@
 
 - (double)normalizedYaw:(double)yaw
 {
-	return fBoundValueToRange(yaw, self.minYaw, self.maxYaw) / self.maxYaw;
+	return fBoundValueToRange(yaw, self.minYaw, self.maxYaw) / (self.maxYaw - self.minYaw);
 }
 
 - (double)normalizedPitch:(double)pitch
 {
-	return fBoundValueToRange(pitch, self.minPitch, self.maxPitch) / self.maxPitch;
+	return fBoundValueToRange(pitch, self.minPitch, self.maxPitch) / (self.maxPitch - self.minPitch);
 }
 
 #pragma mark - C Trampoline Functions

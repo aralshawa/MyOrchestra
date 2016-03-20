@@ -15,6 +15,7 @@
 @property (nonatomic, strong) OrchestralController *orchController;
 
 @property (weak) IBOutlet OrchestralSectionalView *orchestraSectionViews;
+@property (weak) IBOutlet NSButton *playButton;
 
 - (IBAction)onPlayButtonPress:(NSButton *)sender;
 - (IBAction)onModeSelect:(NSPopUpButton *)sender;

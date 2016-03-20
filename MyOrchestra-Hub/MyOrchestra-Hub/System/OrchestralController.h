@@ -10,6 +10,11 @@
 #import "Orchestra.h"
 #import "OrchestralController-C-Interface.h"
 
+typedef NS_ENUM(NSUInteger, SystemMode) {
+	SystemModeRegular,
+	SystemModeSocial
+};
+
 @protocol OrchestralControllerDelegate;
 
 @interface OrchestralController : NSObject
@@ -33,6 +38,8 @@
 // Updates should not be called until calibration is complete
 - (void)onUpdateSectionSelectYaw:(double)degrees;
 - (void)onUpdateVolumeSelectPitch:(double)degrees;
+
+- (void)onUpdateMode:(SystemMode)mode;
 
 @end
 
