@@ -49,7 +49,8 @@ app.post('/voice/', function (req, res) {
 app.post('/voice/choose', function (req, res) {
   var rep = new twilio.TwimlResponse();
   if ( Number(req.body.Digits) === 1 ) {
-    rep.say('This voice session will start recording for up to 10 seconds after the beep. Press any key to stop the recording.', voiceConfig)
+    rep.pause()
+      .say('This voice session will start recording for up to 10 seconds after the beep. Press any key to stop the recording.', voiceConfig)
       .record({
         action: '/voice/record',
         maxLength: 10
