@@ -12,21 +12,21 @@ app.get('/', function (req, res) {
 
 app.get('/sms/', function (req, res) {
   res.set('Content-Type', 'text/xml');
-  res.send(new Buffer(twilioReply(req.query)));
+  res.send(new Buffer(smsReply(req.query)));
 });
 
 app.post('/sms/', function (req, res) {
   res.set('Content-Type', 'text/xml');
-  res.send(new Buffer(twilioReply(req.body)));
+  res.send(new Buffer(smsReply(req.body)));
 });
 
 app.listen(8080, 'localhost', function () {
   console.log('MyOrchestra Server running on port 8080.');
 });
 
-function twilioReply(params) {
+function smsReply(params) {
   console.log(params);
   var reply = new twilio.TwimlResponse();
-  reply.say("Your number is " + params.From);
+  reply.message("Your number is " + params.From);
   return reply.toString();
 }
