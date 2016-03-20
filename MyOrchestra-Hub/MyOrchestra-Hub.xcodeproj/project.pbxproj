@@ -22,6 +22,7 @@
 		55402E2D1C9E42CF00E1CDFB /* low-freq.wav in Resources */ = {isa = PBXBuildFile; fileRef = 55402E2A1C9E42CF00E1CDFB /* low-freq.wav */; };
 		55402E2E1C9E42CF00E1CDFB /* med-freq.wav in Resources */ = {isa = PBXBuildFile; fileRef = 55402E2B1C9E42CF00E1CDFB /* med-freq.wav */; };
 		55402E321C9E5DE500E1CDFB /* OrchestralSectionalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55402E311C9E5DE500E1CDFB /* OrchestralSectionalView.m */; };
+		558583B71C9ED823004080B4 /* SystemStateIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 558583B61C9ED823004080B4 /* SystemStateIndicator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -61,6 +62,8 @@
 		55402E2B1C9E42CF00E1CDFB /* med-freq.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "med-freq.wav"; sourceTree = "<group>"; };
 		55402E301C9E5DE500E1CDFB /* OrchestralSectionalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrchestralSectionalView.h; path = Views/OrchestralSectionalView.h; sourceTree = "<group>"; };
 		55402E311C9E5DE500E1CDFB /* OrchestralSectionalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrchestralSectionalView.m; path = Views/OrchestralSectionalView.m; sourceTree = "<group>"; };
+		558583B51C9ED823004080B4 /* SystemStateIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SystemStateIndicator.h; path = Views/SystemStateIndicator.h; sourceTree = "<group>"; };
+		558583B61C9ED823004080B4 /* SystemStateIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SystemStateIndicator.m; path = Views/SystemStateIndicator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +167,8 @@
 			children = (
 				55402E301C9E5DE500E1CDFB /* OrchestralSectionalView.h */,
 				55402E311C9E5DE500E1CDFB /* OrchestralSectionalView.m */,
+				558583B51C9ED823004080B4 /* SystemStateIndicator.h */,
+				558583B61C9ED823004080B4 /* SystemStateIndicator.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -247,6 +252,7 @@
 				55402E171C9DC53500E1CDFB /* OrchestralController.mm in Sources */,
 				55402DFA1C9DB7C200E1CDFB /* main.m in Sources */,
 				55402E141C9DB8FF00E1CDFB /* OrchestralSection.m in Sources */,
+				558583B71C9ED823004080B4 /* SystemStateIndicator.m in Sources */,
 				55402E1A1C9E07D500E1CDFB /* hello-myo.h in Sources */,
 				55402DF71C9DB7C200E1CDFB /* AppDelegate.m in Sources */,
 			);

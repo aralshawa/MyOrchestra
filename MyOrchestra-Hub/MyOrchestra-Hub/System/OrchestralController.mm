@@ -38,6 +38,7 @@
 	
 	if ((!yawCalComplete || !pitchCalComplete) && !calibrationDispatched) {
 		calibrationDispatched = YES;
+		[_delegate updateSystemState:SystemStateIndicatorStateSetup];
 		
 		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 			// Call myo logic async
@@ -45,14 +46,17 @@
 		});
 	}
 	
-	if (yawCalComplete && pitchCalComplete)
+	if (yawCalComplete && pitchCalComplete) {
 		[self.orchestra beginLooping];
+		[_delegate updateSystemState:SystemStateIndicatorStateRunning];
+	}
 }
 
 - (void)pauseUpdates
 {
 	DataCollector::updateContextOfChanges = false;
 	[self.orchestra pauseLooping];
+	[_delegate updateSystemState:SystemStateIndicatorStateStopped];
 }
 
 - (void)yawCalibrationComplete:(MaxMinCalibrationTuple)result
@@ -75,8 +79,10 @@
 
 - (void)initAudioIfCalComplete;
 {
-	if (yawCalComplete && pitchCalComplete)
+	if (yawCalComplete && pitchCalComplete) {
 		[self.orchestra beginLooping];
+		[_delegate updateSystemState:SystemStateIndicatorStateRunning];
+	}
 }
 
 - (void)onUpdateSectionSelectYaw:(double)degrees

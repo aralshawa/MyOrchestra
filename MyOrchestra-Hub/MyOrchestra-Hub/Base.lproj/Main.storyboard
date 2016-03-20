@@ -651,7 +651,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="MyOrchestra" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
@@ -711,11 +711,19 @@
                                     <action selector="onPlayButtonPress:" target="XfG-lQ-9wD" id="XAt-Mx-Crn"/>
                                 </connections>
                             </button>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="x6v-ky-PhI" customClass="SystemStateIndicator">
+                                <rect key="frame" x="20" y="20" width="129" height="25"/>
+                            </customView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="RaF-Io-qkA" firstAttribute="leading" secondItem="x6v-ky-PhI" secondAttribute="trailing" constant="41" id="A4E-Oc-OcN"/>
                             <constraint firstItem="Ke0-bZ-afy" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="GNx-GW-zN9"/>
+                            <constraint firstItem="x6v-ky-PhI" firstAttribute="top" secondItem="hpP-3v-bhB" secondAttribute="bottom" constant="8" symbolic="YES" id="JAz-AW-dng"/>
+                            <constraint firstItem="x6v-ky-PhI" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Ke0-bZ-afy" secondAttribute="bottom" constant="8" id="P79-Um-1o8"/>
                             <constraint firstItem="Ke0-bZ-afy" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="VvM-hU-3IS"/>
                             <constraint firstAttribute="bottom" secondItem="uwo-Ew-fcU" secondAttribute="bottom" constant="21" id="WZW-gY-W31"/>
+                            <constraint firstAttribute="bottom" secondItem="x6v-ky-PhI" secondAttribute="bottom" constant="20" id="Xvn-JJ-r39"/>
+                            <constraint firstItem="x6v-ky-PhI" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="bao-zv-gm3"/>
                             <constraint firstItem="RaF-Io-qkA" firstAttribute="top" secondItem="hpP-3v-bhB" secondAttribute="bottom" constant="11" id="e5z-0r-w0v"/>
                             <constraint firstAttribute="trailing" secondItem="Ke0-bZ-afy" secondAttribute="trailing" constant="20" id="eSl-Q6-K48"/>
                             <constraint firstItem="hpP-3v-bhB" firstAttribute="centerX" secondItem="RaF-Io-qkA" secondAttribute="centerX" id="eng-jd-uap"/>
@@ -730,6 +738,7 @@
                     <connections>
                         <outlet property="orchestraSectionViews" destination="Ke0-bZ-afy" id="1Ga-3o-ehr"/>
                         <outlet property="playButton" destination="RaF-Io-qkA" id="5WP-Or-4bo"/>
+                        <outlet property="stateIndicator" destination="x6v-ky-PhI" id="ZEi-Tg-X0N"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

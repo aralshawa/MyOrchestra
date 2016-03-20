@@ -244,7 +244,7 @@ public:
 			
 			
 			
-			for (int i = 0; i < 200; i++) {
+			for (int i = 0; i < 100; i++) {
 				hub.run(1000 / 20);
 				
 				if (collector.pitch_w_r < collector.lim_pitch_r[0]) { collector.lim_pitch_r[0] = collector.pitch_w_r; }

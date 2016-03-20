@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 @implementation ViewController  {
 	BOOL _playState;
 	SystemMode _mode;
@@ -23,6 +25,9 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	
+	[self.view setWantsLayer:YES];
+	self.view.layer.backgroundColor = [NSColor whiteColor].CGColor;
 	
 	// Initialization
 	[self resetState];
@@ -69,6 +74,11 @@
 - (void)updateSelectedSectionWithIndex:(NSUInteger)secIdx
 {
 	[self.orchestraSectionViews setSelected:secIdx];
+}
+
+- (void)updateSystemState:(SystemStateIndicatorState)state
+{
+	[self.stateIndicator setState:state];
 }
 
 @end

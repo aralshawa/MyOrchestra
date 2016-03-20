@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "OrchestralController.h"
 #import "OrchestralSectionalView.h"
+#import "SystemStateIndicator.h"
 
 @interface ViewController : NSViewController <OrchestralControllerDelegate>
 
@@ -16,6 +17,7 @@
 
 @property (weak) IBOutlet OrchestralSectionalView *orchestraSectionViews;
 @property (weak) IBOutlet NSButton *playButton;
+@property (weak) IBOutlet SystemStateIndicator *stateIndicator;
 
 - (IBAction)onPlayButtonPress:(NSButton *)sender;
 - (IBAction)onModeSelect:(NSPopUpButton *)sender;

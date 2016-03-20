@@ -23,7 +23,7 @@
 	NSPoint bottomCenter = NSMakePoint(self.frame.size.width / 2, 0);
 	NSPoint topRightCorner = NSMakePoint(self.frame.size.width, self.frame.size.height);
 	
-	[[NSColor blueColor] setStroke];
+//	[[NSColor blueColor] setStroke];
 	
 	leftSectionPath = [NSBezierPath bezierPath];
 	[leftSectionPath moveToPoint:topLeftCorner];
@@ -46,12 +46,15 @@
 	[rightSectionPath lineToPoint:topRightCorner];
 	[rightSectionPath closePath];
 	
-	[[NSColor clearColor] setFill];
+	NSColor *emptyColor = [NSColor colorWithRed:144.f/235.f green:176.f/235.f blue:212.f/235.f alpha:0.5f];
+	NSColor *filledColor = [NSColor colorWithRed:49.f/235.f green:105.f/235.f blue:235.f/235.f alpha:0.5f];
+	
+	[emptyColor setFill];
 	[leftSectionPath fill];
 	[middleSectionPath fill];
 	[rightSectionPath fill];
 	
-	[[NSColor blueColor] setFill];
+	[filledColor setFill];
 	
 	if (_sectionIdx == 0) {
 		[leftSectionPath fill];

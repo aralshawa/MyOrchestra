@@ -15,6 +15,12 @@ typedef NS_ENUM(NSUInteger, SystemMode) {
 	SystemModeSocial
 };
 
+typedef NS_ENUM(NSUInteger, SystemStateIndicatorState) {
+	SystemStateIndicatorStateStopped,
+	SystemStateIndicatorStateSetup,
+	SystemStateIndicatorStateRunning
+};
+
 @protocol OrchestralControllerDelegate;
 
 @interface OrchestralController : NSObject
@@ -47,5 +53,6 @@ typedef NS_ENUM(NSUInteger, SystemMode) {
 @protocol OrchestralControllerDelegate <NSObject>
 
 - (void)updateSelectedSectionWithIndex:(NSUInteger)secIdx;
+- (void)updateSystemState:(SystemStateIndicatorState)state;
 
 @end
