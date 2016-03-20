@@ -8,10 +8,17 @@
 
 #import <Cocoa/Cocoa.h>
 #import "OrchestralController.h"
+#import "OrchestralSectionalView.h"
 
-@interface ViewController : NSViewController
+@interface ViewController : NSViewController <OrchestralControllerDelegate>
 
 @property (nonatomic, strong) OrchestralController *orchController;
+
+@property (weak) IBOutlet OrchestralSectionalView *orchestraSectionViews;
+
+- (IBAction)onPlayButtonPress:(NSButton *)sender;
+- (IBAction)onModeSelect:(NSPopUpButton *)sender;
+- (void)updateSelectedSectionWithIndex:(NSUInteger)secIdx;
 
 @end
 

@@ -21,6 +21,7 @@ class DataCollector : public myo::DeviceListener {
 	
 public:
 	void *systemContext;
+	static bool updateContextOfChanges;
 	
 	DataCollector()
 		: onArmL(false), isUnlockedL(false), roll_w_l(0), pitch_w_l(0), yaw_w_l(0), past_pitch_l(0),
@@ -177,7 +178,6 @@ public:
 		
 		// We catch any exceptions that might occur below -- see the catch statement for more details.
 		try {
-			
 			// First, we create a Hub with our application identifier. Be sure not to use the com.example namespace when
 			// publishing your application. The Hub provides access to one or more Myos.
 			myo::Hub hub("com.example.hello-myo");
@@ -229,7 +229,7 @@ public:
 				printf("%d, %f", collector.yaw_w_r, collector.lim_yaw_r[2]);
 				printf("          ");
 				printf("\r");
-				if (collector.pitch_w_r > collector.lim_pitch_r[2]) {
+				if (collector.pitch_w_r > collector.lim_pitch_r[2] * 0.6f && updateContextOfChanges) {
 					onUpdateSectionSelectYaw(collector.systemContext, collector.yaw_w_r);
 					onUpdateVolumeSelectPitch(collector.systemContext, collector.pitch_w_l);
 				}
@@ -246,3 +246,5 @@ public:
 	}
 };
 
+// This is why. http://stackoverflow.com/questions/12967850/c-compiling-error-undefined-symbols-for-architecture-x86-64
+bool DataCollector::updateContextOfChanges = false;

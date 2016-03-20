@@ -15,15 +15,17 @@
 @implementation OrchestralController {
 	BOOL yawCalComplete;
 	BOOL pitchCalComplete;
+	id<OrchestralControllerDelegate> _delegate;
 }
 
 @synthesize minYaw = _minYaw, maxYaw = _maxYaw, minPitch = _minPitch, maxPitch = _maxPitch;
 
-- (instancetype)init
+- (instancetype)initWithDelegate:(id<OrchestralControllerDelegate>)delegate
 {
 	if (self = [super init])
 	{
 		_orchestra = [[Orchestra alloc] init];
+		_delegate = delegate;
 	}
 	
 	return self;
@@ -31,12 +33,24 @@
 
 - (void)beginCalibrationAndUpdates
 {
-	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-		// Call myo logic async
-		DataCollector::beginCalibrationAndBeginLoop((__bridge void *)self);
-	});
 	
-	NSLog(@"What up!?");
+}
+
+- (void)resumeUpdates
+{
+	DataCollector::updateContextOfChanges = true;
+	
+	if (!yawCalComplete || !pitchCalComplete) {
+		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+			// Call myo logic async
+			DataCollector::beginCalibrationAndBeginLoop((__bridge void *)self);
+		});
+	}
+}
+
+- (void)pauseUpdates
+{
+	DataCollector::updateContextOfChanges = false;
 }
 
 - (void)yawCalibrationComplete:(MaxMinCalibrationTuple)result
@@ -72,6 +86,8 @@
 	if (sectionIdx != NSUIntegerMax)
 	{
 		[self.orchestra setSelectedSectionIdx:sectionIdx];
+		
+		[_delegate updateSelectedSectionWithIndex:sectionIdx];
 	}
 	
 	NSLog(@"%@", self.orchestra);

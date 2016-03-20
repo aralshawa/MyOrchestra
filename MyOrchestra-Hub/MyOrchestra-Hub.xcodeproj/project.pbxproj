@@ -21,6 +21,7 @@
 		55402E2C1C9E42CF00E1CDFB /* hi-freq.wav in Resources */ = {isa = PBXBuildFile; fileRef = 55402E291C9E42CF00E1CDFB /* hi-freq.wav */; };
 		55402E2D1C9E42CF00E1CDFB /* low-freq.wav in Resources */ = {isa = PBXBuildFile; fileRef = 55402E2A1C9E42CF00E1CDFB /* low-freq.wav */; };
 		55402E2E1C9E42CF00E1CDFB /* med-freq.wav in Resources */ = {isa = PBXBuildFile; fileRef = 55402E2B1C9E42CF00E1CDFB /* med-freq.wav */; };
+		55402E321C9E5DE500E1CDFB /* OrchestralSectionalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55402E311C9E5DE500E1CDFB /* OrchestralSectionalView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -58,6 +59,8 @@
 		55402E291C9E42CF00E1CDFB /* hi-freq.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "hi-freq.wav"; sourceTree = "<group>"; };
 		55402E2A1C9E42CF00E1CDFB /* low-freq.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "low-freq.wav"; sourceTree = "<group>"; };
 		55402E2B1C9E42CF00E1CDFB /* med-freq.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "med-freq.wav"; sourceTree = "<group>"; };
+		55402E301C9E5DE500E1CDFB /* OrchestralSectionalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrchestralSectionalView.h; path = Views/OrchestralSectionalView.h; sourceTree = "<group>"; };
+		55402E311C9E5DE500E1CDFB /* OrchestralSectionalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrchestralSectionalView.m; path = Views/OrchestralSectionalView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +98,7 @@
 			children = (
 				55402E0A1C9DB7EF00E1CDFB /* System */,
 				55402E091C9DB7DA00E1CDFB /* Entities */,
+				55402E2F1C9E5DB100E1CDFB /* Views */,
 				55402DF51C9DB7C200E1CDFB /* AppDelegate.h */,
 				55402DF61C9DB7C200E1CDFB /* AppDelegate.m */,
 				55402DFB1C9DB7C200E1CDFB /* ViewController.h */,
@@ -153,6 +157,15 @@
 				55402E2B1C9E42CF00E1CDFB /* med-freq.wav */,
 			);
 			name = "Audio Resources";
+			sourceTree = "<group>";
+		};
+		55402E2F1C9E5DB100E1CDFB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				55402E301C9E5DE500E1CDFB /* OrchestralSectionalView.h */,
+				55402E311C9E5DE500E1CDFB /* OrchestralSectionalView.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,6 +241,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55402E321C9E5DE500E1CDFB /* OrchestralSectionalView.m in Sources */,
 				55402DFD1C9DB7C200E1CDFB /* ViewController.m in Sources */,
 				55402E111C9DB8EB00E1CDFB /* Orchestra.m in Sources */,
 				55402E171C9DC53500E1CDFB /* OrchestralController.mm in Sources */,
