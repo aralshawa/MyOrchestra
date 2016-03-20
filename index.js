@@ -42,7 +42,7 @@ app.post('/voice/', function (req, res) {
     .hangup();
   res.set('Content-Type', 'text/xml');
   res.send(rep.toString());
-  console.log('HELO  ' + req.body.From);
+  console.log('HELO');
 });
 
 app.post('/voice/choose', function (req, res) {
@@ -62,7 +62,7 @@ app.post('/voice/choose', function (req, res) {
   }
   res.set('Content-Type', 'text/xml');
   res.send(rep.toString());
-  // console.log('RESP  ' + req.body.From);
+  console.log('RESP');
 });
 
 app.post('/voice/record', function (req, res) {
@@ -71,13 +71,12 @@ app.post('/voice/record', function (req, res) {
     .hangup();
   res.set('Content-Type', 'text/xml');
   res.send(rep.toString());
-  console.log('REC   ' + req.body.From);
-  console.log('URL   ' + req.body.RecordingUrl);
-  var filename = 'recordings/' + new Date.getTime() + '.wav';
+  console.log('RECR');
+  var filename = 'recordings/' + new Date.now() + '.wav';
   var file = fs.createWriteStream(filename);
   https.get(req.body.RecordingUrl, function(res) {
     res.pipe(file);
-    console.log('FILE  ' + filename);
+    console.log('FILE: ' + filename);
   });
 });
 
