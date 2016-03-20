@@ -6,8 +6,8 @@ var https = require('https');
 var url = require('url');
 var app = express();
 var voiceConfig = {
-  voice: 'alice', 
-  language: 'en-CA'
+  voice: 'female', 
+  language: 'en'
 };
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -37,7 +37,7 @@ app.post('/voice/', function (req, res) {
       numDigits: 1,
       timeout: 5
     }, function() {
-      this.say('To record your voice for the next performance, please press 1.');
+      this.say('To record your voice for the next performance, please press 1.', voiceConfig);
     })
     .say('Thanks for calling MyOrchestra Voice. Have a great day!', voiceConfig)
     .hangup();
