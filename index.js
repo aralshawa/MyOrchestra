@@ -3,6 +3,7 @@ var twilio = require('twilio');
 var bodyParser = require('body-parser');
 var fs = require('fs');
 var https = require('https');
+var url = require('url');
 var app = express();
 var voiceConfig = {
   voice: 'alice', 
@@ -72,9 +73,10 @@ app.post('/voice/record', function (req, res) {
   res.set('Content-Type', 'text/xml');
   res.send(rep.toString());
   console.log('RECR');
-  var filename = 'recordings/' + new Date.now() + '.wav';
+  var remote = req.body.RecordingUrl;
+  var filename = 'recordings/' + remote.match(/[^\/]*$/g)[0] + '.wav';
   var file = fs.createWriteStream(filename);
-  https.get(req.body.RecordingUrl, function(res) {
+  https.get(remote, function(res) {
     res.pipe(file);
     console.log('FILE: ' + filename);
   });
