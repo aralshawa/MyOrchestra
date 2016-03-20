@@ -50,7 +50,7 @@
 		self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:audioURL error:NULL];
 	}
 	
-	[self setVolume:0.5];
+	[self setVolume:0];
 	self.audioPlayer.numberOfLoops = -1;
 	[self.audioPlayer prepareToPlay];
 }

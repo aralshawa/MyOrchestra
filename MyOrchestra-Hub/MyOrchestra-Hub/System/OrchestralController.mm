@@ -45,7 +45,8 @@
 		});
 	}
 	
-	[self.orchestra beginLooping];
+	if (yawCalComplete && pitchCalComplete)
+		[self.orchestra beginLooping];
 }
 
 - (void)pauseUpdates
