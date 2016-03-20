@@ -85,7 +85,9 @@ app.post('/voice/record', function (req, res) {
 app.get('/voice/recordings', function (req, res) {
   res.set('Content-Type', 'application/json');
   fs.readdir('recordings/', function( err, files ) {
-    res.send( JSON.stringify(files) );
+    res.send( JSON.stringify(files.filter(function(filename) {
+      return /(\.wav)$/.test(filename);
+    })));
   });
 });
 
