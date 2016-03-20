@@ -73,10 +73,18 @@ app.post('/voice/record', function (req, res) {
   res.send(rep.toString());
   console.log('REC   ' + req.body.From);
   console.log('URL   ' + req.body.RecordingUrl);
-  var file = fs.createWriteStream("recordings/voice.wav");
+  var filename = 'recordings/' + new Date.getTime() + '.wav';
+  var file = fs.createWriteStream(filename);
   https.get(req.body.RecordingUrl, function(res) {
     res.pipe(file);
-    console.log('FILE  ' + 'recordings/voice.wav');
+    console.log('FILE  ' + filename);
+  });
+});
+
+app.get('/voice/recordings', function (req, res) {
+  res.set('Content-Type', 'application/json');
+  fs.readdir('recordings/', function( err, files ) {
+    res.send( JSON.stringify(files) );
   });
 });
 
