@@ -23,9 +23,8 @@
 	NSPoint bottomCenter = NSMakePoint(self.frame.size.width / 2, 0);
 	NSPoint topRightCorner = NSMakePoint(self.frame.size.width, self.frame.size.height);
 	
-//	[[NSColor blueColor] setStroke];
-	
 	leftSectionPath = [NSBezierPath bezierPath];
+	leftSectionPath.lineWidth = 4.f;
 	[leftSectionPath moveToPoint:topLeftCorner];
 	[leftSectionPath lineToPoint:bottomCenter];
 	[leftSectionPath lineToPoint:NSMakePoint(0, 0)];
@@ -33,6 +32,7 @@
 	[leftSectionPath closePath];
 	
 	middleSectionPath = [NSBezierPath bezierPath];
+	middleSectionPath.lineWidth = 4.f;
 	[middleSectionPath moveToPoint:topLeftCorner];
 	[middleSectionPath lineToPoint:bottomCenter];
 	[middleSectionPath lineToPoint:topRightCorner];
@@ -40,6 +40,7 @@
 	[middleSectionPath closePath];
 	
 	rightSectionPath = [NSBezierPath bezierPath];
+	rightSectionPath.lineWidth = 4.f;
 	[rightSectionPath moveToPoint:topRightCorner];
 	[rightSectionPath lineToPoint:bottomCenter];
 	[rightSectionPath lineToPoint:NSMakePoint(self.frame.size.width, 0)];
@@ -63,6 +64,11 @@
 	} else if (_sectionIdx == 2) {
 		[rightSectionPath fill];
 	}
+	
+	[[NSColor whiteColor] setStroke];
+	[leftSectionPath stroke];
+	[middleSectionPath stroke];
+	[rightSectionPath stroke];
 }
 
 - (void)setSelected:(NSUInteger)secIdx
