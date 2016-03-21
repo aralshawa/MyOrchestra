@@ -123,12 +123,11 @@
 		}
 		case SystemModeSocial:
 		{
-			// pariwak.com/voice/recordings
-			
+			// Request the audio recordings from the server
 			NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://pariwak.com/voice/recordings"]];
 			NSOperationQueue *queue = [[NSOperationQueue alloc] init];
 			[NSURLConnection sendAsynchronousRequest:urlRequest queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
-			 {
+			{
 				 if (error)
 				 {
 					 NSLog(@"Error with recording request: %@", [error localizedDescription]);
@@ -139,18 +138,20 @@
 					 
 					 NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
 					 
-					 for (int secIdx = 0; secIdx < self.orchestra.sections.count; secIdx ++) {
-						 OrchestralSection *section = self.orchestra.sections[secIdx];
-						 
-						 
-						 NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[@"https://pariwak.com/public/" stringByAppendingString:jsonArray[jsonArray.count - secIdx - 1]]]];
-						 NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-						 
-						 [NSURLConnection sendAsynchronousRequest:urlRequest queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
-						  {
-							  [section updateAudioResourceWithData:data];
-
-						  }];
+					 if (jsonArray.count > 0) {
+						 // Iterate through the orchestral sections and request the respective audio clip
+						 for (int secIdx = 0; secIdx < self.orchestra.sections.count; secIdx ++)
+						 {
+							 OrchestralSection *section = self.orchestra.sections[secIdx];
+							 NSUInteger clipIdxToRequest = (secIdx <= jsonArray.count - 1) ? (jsonArray.count - secIdx - 1) : 0;
+							 
+							 NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[@"https://pariwak.com/public/" stringByAppendingString:jsonArray[clipIdxToRequest]]]];
+							 NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+							 
+							 [NSURLConnection sendAsynchronousRequest:urlRequest queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+								  [section updateAudioResourceWithData:data];
+							  }];
+						 }
 					 }
 				 }
 			 }];
